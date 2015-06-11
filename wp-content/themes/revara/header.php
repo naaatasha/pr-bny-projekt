@@ -28,7 +28,7 @@
 	<?php if (get_theme_mod(FT_scope::tool()->optionsName . '_logo', '') != '') { ?>
 				<h1 class="site-title logo"><a class="mylogo" rel="home" href="<?php bloginfo('siteurl');?>/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><img relWidth="<?php echo intval(get_theme_mod(FT_scope::tool()->optionsName . '_maxWidth', 0)); ?>" relHeight="<?php echo intval(get_theme_mod(FT_scope::tool()->optionsName . '_maxHeight', 0)); ?>" id="ft_logo" src="<?php echo get_theme_mod(FT_scope::tool()->optionsName . '_logo', ''); ?>" alt="" /></a></h1>
 	<?php } else { ?>
-				<h1 class="site-title logo"><a id="blogname" rel="home" href="<?php bloginfo('siteurl');?>/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="site-title logo"><a id="blogname" class="navbar-brand" rel="home" href="<?php bloginfo('siteurl');?>/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
 	<?php } ?>
 
 			
@@ -36,7 +36,18 @@
 		
 		<div class="col-sm-8 mainmenu">
 		<div class="mobilenavi"></div>
-				<?php wp_nav_menu( array( 'container_id' => 'submenu', 'theme_location' => 'primary','container_class' => 'topmenu','menu_id'=>'topmenu' ,'menu_class'=>'sfmenu' ) ); ?>
+		<?php /* Primary navigation */
+			wp_nav_menu( array(
+			  'menu' => 'top_menu',
+			  'depth' => 2,
+			  'theme_location' => 'primary',
+			  'menu_id'=>'topmenu' ,
+			  'container' => false,
+			  'menu_class' => 'nav',
+			  //Process nav menu using our custom nav walker
+			  'walker' => new wp_bootstrap_navwalker())
+			);
+		?>
 		</div>
 		
 		</div> <!-- end row -->
