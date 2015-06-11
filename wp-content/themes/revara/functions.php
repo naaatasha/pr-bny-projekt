@@ -208,3 +208,6 @@ else $fflink = '';
 echo $fflink;
 }
 
+// Register custom navigation walker
+    require_once('wp_bootstrap_navwalker.php');
+
